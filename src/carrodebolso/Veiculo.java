@@ -12,7 +12,7 @@ package carrodebolso;
 public abstract class Veiculo {
     protected String marca;
     protected String modelo;
-    protected int anoFabricacao;
+    protected Integer anoFabricacao;
     protected int anoModelo;
     protected float motorizacao;
     protected String combustivel;

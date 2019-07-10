@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class Carro extends Veiculo{
     
-    public Carro(String marca, String modelo, int anoFabricacao, int anoModelo, float motorizacao, String combustivel, String cor, String placa, String renavam){
+    public Carro(String marca, String modelo, Integer anoFabricacao, int anoModelo, float motorizacao, String combustivel, String cor, String placa, String renavam){
         this.marca = marca;
         this.modelo = modelo;
         this.anoModelo = anoModelo;
@@ -67,7 +67,7 @@ public class Carro extends Veiculo{
           try { 
              if (this.modelo.isEmpty()){
                 throw new DescricaoEmBrancoException("Campo modelo não pode estar em branco." + " Preencha o campo");
-              }else if (this.modelo.length() > 3){
+              }else if (this.modelo.length() <= 3){
                 throw new ValorInvalidoException("Valor invalido");
               }else {
                  run1 = false;
@@ -84,9 +84,11 @@ public class Carro extends Veiculo{
             boolean run2 = true;
         do{
           
-            Integer anoFabricacao = teclado.nextInt();
-            this.anoFabricacao = anoFabricacao;
+            
           try { 
+        	  
+        	  Integer anoFabricacao = teclado.nextInt();
+              this.anoFabricacao = anoFabricacao;
              if( this.anoFabricacao <= 1800){
             	 throw new ValorInvalidoException("Ano não pode ser menor que 0");
              }else if(!(anoFabricacao instanceof Integer)) {
@@ -98,6 +100,9 @@ public class Carro extends Veiculo{
          }catch (ValorInvalidoException ex) {
         	System.out.println(ex.getMessage());  
 			ex.printStackTrace();
+		}catch(Exception e){
+			System.out.println("Ano deve ser inteiro");
+	        teclado.next();
 		}
         } while(run2);    
         
