@@ -45,7 +45,8 @@ public class Carro extends Veiculo{
           try { 
              if (this.marca.isEmpty()){
                 throw new DescricaoEmBrancoException("Campo marca não pode estar em branco." + " Preencha o campo");
-              }else {
+              }
+             else {
                  run = false;
             }
          } catch (DescricaoEmBrancoException ex) {
@@ -83,18 +84,21 @@ public class Carro extends Veiculo{
             boolean run2 = true;
         do{
           
-            int anoFabricacao = teclado.nextInt();
+            Integer anoFabricacao = teclado.nextInt();
             this.anoFabricacao = anoFabricacao;
           try { 
-             if (this.anoFabricacao <= 1800){
-             throw new DescricaoEmBrancoException("Ano Invalido." + " Preencha com um ano válido");    
-   
-             }else {
+             if( this.anoFabricacao <= 1800){
+            	 throw new ValorInvalidoException("Ano não pode ser menor que 0");
+             }else if(!(anoFabricacao instanceof Integer)) {
+            	 throw new ValorInvalidoException("Ano não pode conter letras");
+             }
+             else {
                  run2 = false;
              }
-         } catch (DescricaoEmBrancoException ex) {
-             System.out.println(ex.getMessage());      
-         }
+         }catch (ValorInvalidoException ex) {
+        	System.out.println(ex.getMessage());  
+			ex.printStackTrace();
+		}
         } while(run2);    
         
              
